@@ -1,5 +1,6 @@
 package com.freaky.gamification;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/authors")
 public class AuthorController {
 
+    @Autowired
+    GamificationService gamificationService;
     @PostMapping("{id}/books")
     public String postBooks(@PathVariable("id") String authorId, @RequestBody String books) {
-        return authorId + books;
+        return gamificationService.postBooks(authorId+books);
     }
 
 }
